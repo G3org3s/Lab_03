@@ -28,6 +28,11 @@ import javafx.stage.Stage;
  *
  * @author 6302743
  */
+
+/*
+Git username: G3orG3s
+Git Repo link: https://github.com/G3org3s/Lab_03
+*/
 public class Lab3 extends Application {
     /**
      * @param args the command line arguments
