@@ -80,7 +80,20 @@ public class Lab3 extends Application {
         btn1.setDisable(true);
 
         firstNameTextField.setOnKeyPressed(e -> {
-            int r = emailTextField.getText().length();
+            firstNameFilled= firstNameTextField.getText().length() > 0 ;
+            setRegister(btn1);
+        });
+        lastNameTextField.setOnKeyPressed(e -> {
+            lastNameFilled= lastNameTextField.getText().length() > 0 ;
+            setRegister(btn1);
+        });
+        emailTextField.setOnKeyPressed(e -> {
+            emailFilled= emailTextField.getText().length() > 0 ;
+            setRegister(btn1);
+        });
+        passwordTextField.setOnKeyPressed(e -> {
+            passwordFilled= passwordTextField.getText().length() > 0 ;
+            setRegister(btn1);
         });
         
         btn1.setOnAction(e -> {
@@ -107,62 +120,14 @@ public class Lab3 extends Application {
         stage.show();
     }
     
+    public void setRegister(Button btn1) {
+        if (firstNameFilled && lastNameFilled && emailFilled && passwordFilled) {
+            btn1.setDisable(false);
+        } else {
+            btn1.setDisable(true);
+        }
+            
+    }
+    
 }
 
-//        messageLabel = new Label("Click the button to see the message");
-//        Button myButton = new Button("Click me");
-//        Button thyButton = new Button("Click me");
-//        VBox vb = new VBox(10, messageLabel, myButton, thyButton);
-//        vb.setAlignment(Pos.CENTER);
-//        
-//        
-//        
-//        Scene s = new Scene(vb, 300, 300);
-//        stage.setScene(s);
-//        stage.show();
-//        
-//        myButton.setOnAction(e -> {
-//            messageLabel.setText("Top Button was Clicked!");
-//        });
-//        thyButton.setOnAction(e -> {
-//            messageLabel.setText("Bottom Button was Clicked!");
-//        });
-//        s.setOnKeyPressed(e -> {
-//            KeyCode keycode = e.getCode();
-//            messageLabel.setText("You Cliked on " + keycode + "!");
-//        });
-        //myButton.setOnAction(new ButtonClickHandler());
-        
-//        GridPane grid = new GridPane();
-//        grid.setAlignment(Pos.CENTER);
-//        grid.setHgap(10);
-//        grid.setVgap(10);
-//        grid.setPadding(new Insets(25, 25, 25, 25));
-//        Scene scene = new Scene(grid, 300, 275);
-//        stage.setScene(scene);
-//        
-//        Text scenetitle = new Text("Welcome"); 
-//        scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
-//        grid.add(scenetitle, 0, 0, 2, 1);
-//        Label userName = new Label("User Name:");
-//        grid.add(userName, 0, 1);
-//        TextField userTextField = new TextField();
-//        grid.add(userTextField, 1, 1);
-//        Label pw = new Label("Password:");
-//        grid.add(pw, 0, 2);
-//        PasswordField pwBox = new PasswordField();
-//        grid.add(pwBox, 1, 2);
-//        
-//        Button btn = new Button("Sign in");
-//        HBox hbBtn = new HBox(10);
-//        hbBtn.setAlignment(Pos.BOTTOM_RIGHT);
-//        hbBtn.getChildren().add(btn);
-//        grid.add(hbBtn, 1, 4);
-//        Text actiontarget = new Text();
-//        grid.add(actiontarget, 1, 6); 
-//
-//        btn.setOnAction(e -> {
-//            actiontarget.setFill(Color.FIREBRICK);
-//            actiontarget.setText("Sign in button pressed");
-//        });
-//        
