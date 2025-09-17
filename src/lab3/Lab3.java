@@ -41,6 +41,7 @@ public class Lab3 extends Application {
     boolean passwordFilled = false;
     @Override
     public void start(Stage stage) throws Exception {
+        //Creating layout
         BorderPane root = new BorderPane();
         GridPane grid = new GridPane();
         root.setCenter(grid);
@@ -48,6 +49,7 @@ public class Lab3 extends Application {
         grid.setHgap(10);
         grid.setVgap(10);
         
+        //Making all the Labels, text and buttons
         Label firstName = new Label("First name: ");
         TextField firstNameTextField = new TextField();
         grid.add(firstName, 0,0);
@@ -73,12 +75,15 @@ public class Lab3 extends Application {
         grid.add(btn1, 0,4);
         
         Button btn2 = new Button("Clear");
-        grid.add(btn2, 1,4);
+        grid.add(btn2, 1, 4);
         
         Label message = new Label("");
-        
+        grid.add(message, 1, 5);
         btn1.setDisable(true);
-
+        
+        /*Checks if a field is empty on every key press in order to update
+        the register buttons status (disabled or not)
+        */
         firstNameTextField.setOnKeyPressed(e -> {
             firstNameFilled= firstNameTextField.getText().length() > 0 ;
             setRegister(btn1);
@@ -96,15 +101,41 @@ public class Lab3 extends Application {
             setRegister(btn1);
         });
         
+        //Action once we click register
         btn1.setOnAction(e -> {
-            boolean f = true;
-            int c = 0;
-            if(!emailTextField.getText().contains("@")){
-                f = false;
+            boolean hasNum = false;
+            boolean hasLet = false;
+            boolean hasAt = false;
+            boolean validDom = false;
+            
+            //Checks if the email is valid
+            String domain = "";
+            if(emailTextField.getText().split("@").length == 2) {
+                hasAt = true;
+                domain = emailTextField.getText().split("@")[1];
+            }
+            if(domain.split("\\.").length == 2 && hasAt) {
+                 validDom = true; 
+            }
+            //Check if password has both letters and numbers
+            for(Character c : passwordTextField.getText().toCharArray()) {
+                if (c > 47 && c <58) {
+                    hasNum = true;
+                }
+                if ((c > 64 && c < 91) || (c > 96 && c < 123)) {
+                    hasLet = true;
+                }
             }
             
+            //set the error message depending on if everything ok
+            if(hasLet && hasNum && hasAt && validDom) {
+                message.setText("Valid Registration");
+            } else {
+                message.setText("Error");
+            }
         });
-
+        
+        //Clear button action
         btn2.setOnAction(e -> {
             firstNameTextField.setText("");
             lastNameTextField.setText("");
@@ -112,22 +143,19 @@ public class Lab3 extends Application {
             passwordTextField.setText("");
         });
         
-        
-        
-        
+        //Create scene and set the stage
         Scene s = new Scene(root, 500, 500);
         stage.setScene(s);
         stage.show();
     }
     
+    //Method to check if all fields have entries
     public void setRegister(Button btn1) {
         if (firstNameFilled && lastNameFilled && emailFilled && passwordFilled) {
             btn1.setDisable(false);
         } else {
             btn1.setDisable(true);
         }
-            
     }
-    
 }
 
