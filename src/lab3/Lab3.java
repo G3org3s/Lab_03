@@ -70,7 +70,6 @@ public class Lab3 extends Application {
         grid.add(email, 0, 2);
         grid.add(emailTextField, 1, 2);
         
-        
         Label password = new Label("PassWord: ");
         PasswordField passwordTextField = new PasswordField();
         grid.add(password, 0, 3);
@@ -150,6 +149,7 @@ public class Lab3 extends Application {
         
         //Create scene and set the stage
         Scene s = new Scene(root, 500, 500);
+        stage.setTitle("Registration form");
         stage.setScene(s);
         stage.show();
     }
